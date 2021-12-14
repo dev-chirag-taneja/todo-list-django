@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="my-5 p-4 shadow border">
+                <h2>{{ todo.title }}</h2>
+                <p>{{ todo.description }}</p>
+                <a href="{% url 'todos' %}" class="shadow btn btn-sm btn-outline-dark"><i class="fa-solid fa-arrow-left"></i> Go back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

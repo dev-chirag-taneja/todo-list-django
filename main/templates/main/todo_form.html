@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="my-5 p-4 shadow border">
+                <h2 class="text-center"><i class="fa-brands fa-trello"></i></h2>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        {{ form.title|as_crispy_field }}
+                    </div>
+                    <div class="mb-2">
+                        {{ form.description|as_crispy_field }}
+                    </div>
+                    <div class="mb-2">
+                        {{ form.complete|as_crispy_field }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

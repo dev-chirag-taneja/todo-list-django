@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+<div class="container mt-3">
+    <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-8 ">
+        <div class="card bg-light text-dark">
+        <div class="card-body p-4">
+
+            <h2 class="text-center my-3"><i class="fa-solid fa-clipboard-list"></i> Todo List</h2>
+
+            <form class="col-md-8 mx-auto mb-4 pb-2">
+
+            <div class="form-outline">
+                <input type="text" name="q" value="{{q}}" class="form-control" placeholder="Search Todo"/>
+            </div>
+            
+            <div class="d-flex justify-content-center mt-2">
+                <button type="submit" class="btn btn-dark"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+                <a href="{% url 'create-todo' %}" type="submit" class="btn btn-primary">+ Add</a>
+            </div>
+
+            </form>
+
+            <table class="table mb-4 text-dark text-center">
+            <thead>
+                <tr>
+                    <th scope="col">SNo.</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    {% if todo.complete %}
+                        <td><a href="{% url 'todo' todo.id %}" class="text-dark text-decoration-line-through">{{ todo }}</a></td>
+                        <td><a href="{% url 'delete-todo' todo.id %}" class="btn btn-success mb-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa-solid fa-trash"></i></a></td>
+                    {% else %}
+                        <td><a href="{% url 'todo' todo.id %}" class="text-dark text-decoration-none">{{ todo }}</a></td>
+                        <td><a href="{% url 'update-todo' todo.id %}" class="btn btn-warning mb-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{% url 'delete-todo' todo.id %}" class="btn btn-success mb-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa-solid fa-trash"></i></a></td>
+                    {% endif %}
+                </tr>  
+                {% empty %}
+                <p>List is empty! <i class="fa-solid fa-hourglass-empty"></i></p>
+            {% endfor %}
+            </tbody>
+            </table>
+
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock content %}
